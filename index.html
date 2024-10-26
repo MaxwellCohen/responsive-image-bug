@@ -1,0 +1,40 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Responsive Image bug </title>
+    <style>
+        img {
+            max-inline-size: 100%;
+            block-size: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="showSize"></div>
+
+    <img src="https://placehold.co/1001x1001.webp?text=default" srcSet="
+    https://placehold.co/1000x1000/blue/white.webp?text=over+800 1000w,
+    https://placehold.co/400x400/red/white.webp?text=under+800 500w ,
+      " sizes="(max-width:800px) 11px ,  1000px" />
+
+
+    <script>
+        function logSize() {
+            // Get the new window dimensions
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const el =  document.getElementById('showSize');
+            if(el) {
+                document.getElementById('showSize').innerText = `${width} x ${height}`;
+            }
+        }
+        window.addEventListener('resize', logSize);
+        logSize();
+    </script>
+</body>
+
+</html>
